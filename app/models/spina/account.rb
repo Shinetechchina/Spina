@@ -1,7 +1,7 @@
 module Spina
   class Account < ActiveRecord::Base
     extend FriendlyId
-    
+
     serialize :preferences
     include Spina::Partable
 
@@ -20,6 +20,7 @@ module Spina
     alias_attribute :parts, :layout_parts
 
     after_save :bootstrap_website
+    before_create :set_default_theme
 
     friendly_id :name
 
@@ -36,11 +37,21 @@ module Spina
       layout_part.try(:content)
     end
 
+    def active?
+      self.id.present? && self.name.present?
+    end
+
     private
 
     def bootstrap_website
       theme = ::Spina.theme(self.theme)
       bootstrap_pages(theme) if theme
+    end
+
+    def set_default_theme
+      if self.theme.blank?
+        self.theme = "default"
+      end
     end
 
     def bootstrap_pages(theme)
@@ -50,7 +61,7 @@ module Spina
     end
 
     def find_or_create_custom_pages(theme)
-      theme.config.custom_pages.each do |page| 
+      theme.config.custom_pages.each do |page|
         Page.where(account_id: self.id, name: page[:name], deletable: false).first_or_create(title: page[:title], view_template: page[:view_template]).activate!
       end
     end

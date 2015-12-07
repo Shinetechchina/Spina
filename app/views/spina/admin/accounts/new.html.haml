@@ -1,0 +1,12 @@
+= form_for [spina, :admin, @account] do |f|
+  .table-container
+    %table.table.table-form
+      %tr
+        %td
+          = Spina::Account.human_attribute_name(:name)
+        %td
+          = f.text_field :name, placeholder: Spina::Account.human_attribute_name(:name)
+
+  %button.button.button-primary{type: 'submit'}
+    = icon('check')
+    = t('spina.preferences.account_save')
