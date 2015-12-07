@@ -1,4 +1,4 @@
-- if current_account.not_blank?
+- if current_account.active?
   - content_for :secondary_navigation do
     %nav#secondary
       %h1= t('spina.preferences.title')

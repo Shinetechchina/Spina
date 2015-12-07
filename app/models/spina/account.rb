@@ -37,7 +37,7 @@ module Spina
       layout_part.try(:content)
     end
 
-    def not_blank?
+    def active?
       self.id.present? && self.name.present?
     end
 

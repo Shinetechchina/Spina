@@ -54,7 +54,7 @@ module Spina
       private
 
       def check_account_valid
-        unless current_account.not_blank?
+        unless current_account.active?
           redirect_to spina.new_admin_account_url
         end
       end

@@ -24,7 +24,7 @@
     %section#main
       %header#main_content_header
         = yield(:permanent_notice) if content_for?(:permanent_notice)
-        - if current_account.not_blank?
+        - if current_account.active?
           .pull-right
             = link_to "/", class: 'button button-hollow button-round button-small preview-website', target: :_blank, data: {:"no-turbolink" => true} do
               = icon('eye')
