@@ -20,6 +20,7 @@ module Spina
     alias_attribute :parts, :layout_parts
 
     after_save :bootstrap_website
+    before_create :set_default_theme
 
     friendly_id :name
 
@@ -45,6 +46,12 @@ module Spina
     def bootstrap_website
       theme = ::Spina.theme(self.theme)
       bootstrap_pages(theme) if theme
+    end
+
+    def set_default_theme
+      if self.theme.blank?
+        self.theme = "default"
+      end
     end
 
     def bootstrap_pages(theme)
