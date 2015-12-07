@@ -7,6 +7,7 @@ module Spina
       layout "spina/admin/settings"
 
       def new
+        @account = Account.new
         add_breadcrumb I18n.t('spina.accounts.new')
       end
 
