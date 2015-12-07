@@ -2,12 +2,11 @@ module Spina
   module Admin
     class AccountsController < AdminController
 
-      before_filter :check_account, except: [:new, :create]
+      before_filter :check_account_valid, except: [:new, :create]
       authorize_resource class: Account
       layout "spina/admin/settings"
 
       def new
-        @current_account = Account.new
         add_breadcrumb I18n.t('spina.accounts.new')
       end
 
@@ -53,8 +52,8 @@ module Spina
 
       private
 
-      def check_account
-        if current_account.blank?
+      def check_account_valid
+        unless current_account.not_blank?
           redirect_to spina.new_admin_account_url
         end
       end

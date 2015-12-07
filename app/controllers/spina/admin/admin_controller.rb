@@ -18,7 +18,7 @@ module Spina
       end
 
       def current_account
-        @current_account ||= Account.find_by(custom_domain: request.host) || Account.find_by(subdomain: request.subdomain) || current_user.accounts.first
+        @current_account ||= Account.find_by(custom_domain: request.host) || Account.find_by(subdomain: request.subdomain) || current_user.accounts.first || Account.new
       end
       helper_method :current_account
 

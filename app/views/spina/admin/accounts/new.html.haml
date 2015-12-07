@@ -1,4 +1,4 @@
-= form_for [spina, :admin, @current_account] do |f|
+= form_for [spina, :admin, current_account] do |f|
   .table-container
     %table.table.table-form
       %tr
@@ -6,11 +6,6 @@
           = Spina::Account.human_attribute_name(:name)
         %td
           = f.text_field :name, placeholder: Spina::Account.human_attribute_name(:name)
-      %tr
-        %td
-          = Spina::Account.human_attribute_name(:subdomain)
-        %td
-          = f.text_field :subdomain, placeholder: Spina::Account.human_attribute_name(:subdomain)
 
   %button.button.button-primary{type: 'submit'}
     = icon('check')
