@@ -29,7 +29,7 @@
             = link_to "/", class: 'button button-hollow button-round button-small preview-website', target: :_blank, data: {:"no-turbolink" => true} do
               = icon('eye')
               = t('spina.preview_website')
-          .breadcrumbs= render_breadcrumbs separator: '<div class="divider"></div>'
+        .breadcrumbs= render_breadcrumbs separator: '<div class="divider"></div>'
         = yield(:tertiary_navigation) if content_for?(:tertiary_navigation)
 
         = render 'spina/admin/shared/notifications'
