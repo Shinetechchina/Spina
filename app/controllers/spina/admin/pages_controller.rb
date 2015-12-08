@@ -39,13 +39,13 @@ module Spina
       end
 
       def edit
-        @page = Page.find(params[:id])
+        @page = current_account.pages.find(params[:id])
         add_breadcrumb @page.title
         @page_parts = current_theme.config.page_parts.map { |page_part| @page.page_part(page_part) }
       end
 
       def update
-        @page = Page.find(params[:id])
+        @page = current_account.pages.find(params[:id])
         add_breadcrumb @page.title
         respond_to do |format|
           if @page.update_attributes(page_params)
