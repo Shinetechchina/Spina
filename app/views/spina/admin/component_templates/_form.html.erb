@@ -26,4 +26,51 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+
+  <% if !@component.new_record?%>
+  <h2>Param templates</h2>
+  <div id="component-params">
+    <% @component.param_templates.each do |param_template|%>
+      <div id="<%= param_template.id%>">
+        <label>Name</label>
+        <input type="text" value="<%= param_template.name%>" ref="name"> 
+        <label>Type</label>
+        <input type="text" value="<%= param_template.param_type%>" ref="param-type">
+        <button type="button" ref="<%= param_template.id%>" data-func="edit">Edit</button>
+        <button type="button" ref="<%= param_template.id%>" data-func="save">Save</button>
+        <a data-method="delete" href="/admin/param_templates/<%= param_template.id%>">Destroy</a>
+      </div> 
+    <% end %>
+    <%= link_to "Add new param", new_admin_component_template_param_template_path(@component)%>
+  </div>
+  <% end %>
 <% end %>
+
+<script type="text/javascript">
+  $("#component-params").find("input").attr("disabled", "disabled");
+  $("#component-params").find("button[data-func='save']").hide();
+
+  $("button[data-func='edit']").bind("click", function(){
+    var id = $(this).attr("ref")
+    $("#"+id).find("input").removeAttr("disabled");
+    $(this).hide();
+    $("button[data-func='save']").show();
+  });
+
+  $("button[data-func='save']").bind("click", function(){
+    var id = $(this).attr("ref");
+    var name = $("#"+id).find("input[ref='name']").val();
+    var param_type = $("#"+id).find("input[ref='param-type']").val();
+    var button = $(this);
+    $.ajax({
+      type: 'PUT',
+      url: "/admin/param_templates/"+id,
+      data: {name: name, param_type: param_type},
+      success: function() {
+        $("#"+id).find("input").attr("disabled", "disabled");
+        button.hide();
+        $("button[data-func='edit']").show();
+      }
+    });
+  });
+</script>
