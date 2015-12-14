@@ -11,20 +11,21 @@ class DynamicComponents < ActiveRecord::Migration
     create_table "spina_param_templates", force: :cascade do |t|
       t.string :name
       t.string :type
-      t.belongs_to :spina_component_template
+      t.belongs_to :component_template
       t.timestamps
     end
 
     create_table "spina_components", force: :cascade do |t|
-      t.belongs_to :spina_component_template
-      t.belongs_to :spina_page
+      t.belongs_to :component_template
+      t.belongs_to :page
       t.timestamps
     end
 
-    create_table "spina_params", force: :cascade do |t|
+    create_table "spina_component_params", force: :cascade do |t|
       t.string :name
       t.string :value
-      t.belongs_to :spina_component
+      t.belongs_to :component
+      t.belongs_to :param_template
       t.timestamps
     end
   end

@@ -6,6 +6,8 @@ module Spina
     before_save :create_component_template
     after_destroy :destroy_component_template
     
+    has_many :param_templates
+    
     private
     def create_component_template
       path = Rails.root.join('app', 'assets', 'javascripts','default','js','components', "#{self.name.parameterize}.es6.jsx")

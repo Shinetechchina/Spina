@@ -9,7 +9,7 @@ module Spina
 
     belongs_to :account
     has_many :page_parts, dependent: :destroy
-
+    has_many :components
     before_validation :ensure_title
     before_validation :ancestry_is_nil
     before_save :set_materialized_path

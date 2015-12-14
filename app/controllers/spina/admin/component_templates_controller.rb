@@ -6,29 +6,29 @@ module Spina
       layout "spina/admin/website"
 
       def show
-        @template = ComponentTemplate.find(params[:id])
+        @component = ComponentTemplate.find(params[:id])
       end
 
       def index
-        @templates = ComponentTemplate.all
+        @components = ComponentTemplate.all
       end
 
       def new
         add_breadcrumb "New component", new_admin_component_template_path
 
-        @template = ComponentTemplate.new
+        @component = ComponentTemplate.new
       end
 
       def edit
-        @template = ComponentTemplate.find(params[:id])
-        add_breadcrumb @template.name
+        @component = ComponentTemplate.find(params[:id])
+        add_breadcrumb @component.name
       end
 
       def create
-        @template = ComponentTemplate.new(component_params)
+        @component = ComponentTemplate.new(component_params)
 
         add_breadcrumb "New component"
-        if @template.save
+        if @component.save
           redirect_to admin_component_templates_url, notice: "Component has been created."
         else
           render :new
@@ -36,19 +36,19 @@ module Spina
       end
 
       def update
-        @template = ComponentTemplate.find(params[:id])
+        @component = ComponentTemplate.find(params[:id])
 
-        add_breadcrumb @template.name
-        if @template.update_attributes(component_params)
-          redirect_to admin_component_templates_url, notice: "Component #{@template.name} has been updated."
+        add_breadcrumb @component.name
+        if @component.update_attributes(component_params)
+          redirect_to admin_component_templates_url, notice: "Component #{@component.name} has been updated."
         else
           render :edit
         end
       end
 
       def destroy
-        @template = ComponentTemplate.find(params[:id])
-        @template.destroy
+        @component = ComponentTemplate.find(params[:id])
+        @component.destroy
         redirect_to admin_component_templates_url, notice: "The component has beed destroyed."
       end
 
