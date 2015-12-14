@@ -14,7 +14,7 @@ Spina::Engine.routes.draw do
     end
 
     resources :users
-
+    resources :component_templates
     # Sessions
     resources :sessions
     get "login" => "sessions#new"
