@@ -1,0 +1,26 @@
+.param-container {
+  background-color: rgba(135, 135, 137, 0.29);
+  padding: 15px 15px 5px 15px;
+  border-radius: 5px;
+  margin: 10px 0;
+
+  input[type='submit'] {
+    background-color: #616096;
+    color: white;
+    margin-top: 10px;
+    border-radius: 4px;
+  }
+  a {
+    background-color: rgba(121, 22, 103, 0.88);
+    color: white;
+    margin-top: 10px;
+    padding: 2px 6px 3px;
+    border-radius: 4px;
+    font-weight: normal;
+  }
+}
+
+.add-param-template {
+  display: block;
+  margin-bottom: 5px;
+}

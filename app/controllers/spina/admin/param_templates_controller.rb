@@ -10,22 +10,25 @@ module Spina
       def new
         @component = ComponentTemplate.find(params[:component_template_id])
         @param_tempalte = @component.param_templates.build
-        @component.param_templates << @param_tempalte
-        @component
-        redirect_to :back
+        @param_tempalte.id = Time.now.to_i
       end
 
       def create
+        ParamTemplate.create(create_params)
+        redirect_to :back
       end
 
       def update
-        ParamTemplate.update(update_params[:id], update_params)
-        render :nothing =>true
+        ParamTemplate.update(params[:id], update_params)
+        redirect_to :back
       end
 
       private
       def update_params
-        params.permit(:id, :name, :param_type)
+        params.require(:param_template).permit(:id, :name, :param_type, :component_template_id)
+      end
+      def create_params
+        params.require(:param_template).permit(:name, :param_type, :component_template_id)
       end
     end
   end

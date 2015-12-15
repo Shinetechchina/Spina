@@ -1,0 +1,6 @@
+<div id="param-define-container">
+  <% param_templates.each do |param_template| %>
+    <%= render partial: "spina/admin/param_templates/form", locals: {param_template: param_template} %>
+  <% end %>   
+  <%= link_to "Add new param", new_admin_component_template_param_template_path(component), class: "add-param-template", remote: true%>  
+</div>
