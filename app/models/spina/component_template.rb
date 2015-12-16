@@ -4,9 +4,7 @@ module Spina
     validates :name, presence: true, uniqueness: true
 
     before_save :create_component_template
-    after_destroy :destroy_component_template
-    
-    has_many :param_templates
+    has_many :param_templates, dependent: :destroy
     
     private
     def create_component_template

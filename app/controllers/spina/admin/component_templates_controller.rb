@@ -15,7 +15,6 @@ module Spina
 
       def new
         add_breadcrumb "New component", new_admin_component_template_path
-
         @component = ComponentTemplate.new
       end
 
@@ -29,7 +28,7 @@ module Spina
 
         add_breadcrumb "New component"
         if @component.save
-          redirect_to admin_component_templates_url, notice: "Component has been created."
+          redirect_to action: :edit, id: @component.id
         else
           render :new
         end
@@ -40,7 +39,7 @@ module Spina
 
         add_breadcrumb @component.name
         if @component.update_attributes(component_params)
-          redirect_to admin_component_templates_url, notice: "Component #{@component.name} has been updated."
+          redirect_to :back
         else
           render :edit
         end
