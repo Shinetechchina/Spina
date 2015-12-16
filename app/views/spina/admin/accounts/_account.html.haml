@@ -1,0 +1,8 @@
+%tr
+  %td= account.name
+  %td= image_tag account.logo_url
+  %td.nowrap
+    %small= l account.created_at, format: '%d %B %Y %H:%M'
+  %td.nowrap
+    = link_to t('spina.edit'), admin_pages_path, class: 'btton button-link button-small'
+    = link_to t('spina.delete'), admin_account_path(account), method: :delete, class: 'button button-link button-danger button-small', data: {confirm: t('spina.delete_confirmation', subject: account.name)}

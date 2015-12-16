@@ -11,7 +11,7 @@ module Spina
     has_many :pages, dependent: :destroy
     has_many :attachments, dependent: :destroy
     has_many :photos, dependent: :destroy
-    has_many :colours, dependent: :destroy
+    has_many :colors, dependent: :destroy
     has_many :inquiries, dependent: :destroy
     has_many :layout_parts, dependent: :destroy
     accepts_nested_attributes_for :layout_parts, allow_destroy: true

@@ -1,0 +1,10 @@
+%table.table.datatable
+  %thead
+    %tr
+      %th= Spina::Account.human_attribute_name(:name)
+      %th= Spina::Account.human_attribute_name(:logo)
+      %th= Spina::Account.human_attribute_name(:created_at)
+      %th{colspan: 2}
+
+  %tbody.table-prepend-document
+    = render partial: 'spina/admin/accounts/account', collection: @accounts, as: :account

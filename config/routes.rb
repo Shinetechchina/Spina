@@ -2,7 +2,7 @@ Spina::Engine.routes.draw do
 
   # Backend
   namespace :admin do
-    root to: "pages#index"
+    root to: "accounts#index"
 
     resources :accounts do
       member do

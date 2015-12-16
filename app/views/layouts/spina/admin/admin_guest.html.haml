@@ -17,18 +17,11 @@
     = javascript_include_tag "spina/admin/application"
     = yield(:plugin_stylesheets) if content_for?(:plugin_stylesheets)
   %body{aviary_api_key: current_account.aviary_api_key, aviary_language: current_account.aviary_language, ngrok_address: (current_account.ngrok_address if Rails.env.development?) }
-    = render 'spina/admin/shared/navigation'
 
     = yield(:secondary_navigation)
 
     %section#main
       %header#main_content_header
-        = yield(:permanent_notice) if content_for?(:permanent_notice)
-        - if current_account.active?
-          .pull-right
-            = link_to preview_with_subdomain(current_account.subdomain), class: 'button button-hollow button-round button-small preview-website', target: :_blank, data: {:"no-turbolink" => true} do
-              = icon('eye')
-              = t('spina.preview_website')
         .breadcrumbs= render_breadcrumbs separator: '<div class="divider"></div>'
         = yield(:tertiary_navigation) if content_for?(:tertiary_navigation)
 
@@ -36,8 +29,6 @@
 
       = content_for?(:content) ? yield(:content) : yield
 
-      = link_to 'http://www.spinacms.com', class: 'spina-logo', target: :blank do
-        = image_tag('spina/spina.png')
 
     / Aviary editor
     #injection_site

@@ -4,7 +4,14 @@ module Spina
 
       before_filter :check_account_valid, except: [:new, :create]
       authorize_resource class: Account
-      layout "spina/admin/settings"
+      layout "spina/admin/settings", except: :index
+
+      def index
+        @accounts = current_user.accounts
+        add_breadcrumb I18n.t('spina.accounts.index')
+        
+        render layout: "spina/admin/admin_guest"
+      end
 
       def new
         @account = Account.new
@@ -31,6 +38,13 @@ module Spina
         else
           redirect_to :back
         end
+      end
+
+      def destroy
+        @account = current_user.accounts.friendly.find(params[:id])
+        @account.destroy
+
+        redirect_to spina.admin_accounts_path
       end
 
       def analytics
