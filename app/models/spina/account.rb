@@ -16,6 +16,9 @@ module Spina
     has_many :layout_parts, dependent: :destroy
     accepts_nested_attributes_for :layout_parts, allow_destroy: true
 
+    validates :name, presence: true, uniqueness: true,  format: { with: /\A\w+\z/, 
+      message: I18n.t('spina.account.name_format', default: 'only limit letter, number, underscore') }
+
     alias_attribute :layout_part, :part
     alias_attribute :parts, :layout_parts
 

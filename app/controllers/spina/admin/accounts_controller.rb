@@ -8,14 +8,16 @@ module Spina
 
       def index
         @accounts = current_user.accounts
-        add_breadcrumb I18n.t('spina.accounts.index')
+        add_breadcrumb I18n.t('spina.accounts.index', default: 'accounts')
         
-        render layout: "spina/admin/admin_guest"
+        render layout: "spina/admin/account"
       end
 
       def new
         @account = Account.new
         add_breadcrumb I18n.t('spina.accounts.new')
+
+        render layout: "spina/admin/account"
       end
 
       def create
@@ -25,6 +27,7 @@ module Spina
           redirect_to spina.admin_pages_url
         else
           add_breadcrumb I18n.t('spina.accounts.new')
+          render :new, layout: "spina/admin/account"
         end
       end
 

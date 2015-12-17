@@ -22,6 +22,8 @@
 
     %section#main
       %header#main_content_header
+        = yield(:permanent_notice) if content_for?(:permanent_notice)
+      
         .breadcrumbs= render_breadcrumbs separator: '<div class="divider"></div>'
         = yield(:tertiary_navigation) if content_for?(:tertiary_navigation)
 
