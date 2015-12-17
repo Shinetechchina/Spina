@@ -26,6 +26,10 @@ module Spina
       def create
         @component = ComponentTemplate.new(component_params)
 
+        path = Rails.root.join('app', 'assets', 'javascripts',"#{current_theme.name}",'js','components')
+        FileUtils.mkdir_p(path) unless Dir.exist?(path)
+        @component.file_path = path.join("#{@component.name.parameterize}.es6.jsx").to_s
+
         add_breadcrumb "New component"
         if @component.save
           redirect_to action: :edit, id: @component.id
