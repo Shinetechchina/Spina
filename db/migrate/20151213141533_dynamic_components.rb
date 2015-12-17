@@ -10,7 +10,7 @@ class DynamicComponents < ActiveRecord::Migration
 
     create_table "spina_param_templates", force: :cascade do |t|
       t.string :name
-      t.string :param_type
+      t.string :use_for
       t.belongs_to :component_template
       t.timestamps
     end

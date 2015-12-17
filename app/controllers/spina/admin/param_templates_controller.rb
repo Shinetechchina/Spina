@@ -3,7 +3,7 @@ module Spina
     class ParamTemplatesController < AdminController
       
       def destroy
-        ParamTemplate.find(params[:id]).destroy
+        ParamTemplate.find_by(id: params[:id]).try(:destroy)
         redirect_to :back
       end
 
@@ -25,10 +25,10 @@ module Spina
 
       private
       def update_params
-        params.require(:param_template).permit(:id, :name, :param_type, :component_template_id)
+        params.require(:param_template).permit(:id, :name, :use_for, :component_template_id)
       end
       def create_params
-        params.require(:param_template).permit(:name, :param_type, :component_template_id)
+        params.require(:param_template).permit(:name, :use_for, :component_template_id)
       end
     end
   end

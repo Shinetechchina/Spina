@@ -3,8 +3,8 @@
     <%= f.hidden_field :component_template_id %>
     <%= f.label :name %><br>
     <%= f.text_field :name %><br>
-    <%= f.label :param_type %>
-    <%= f.text_field :param_type %>
+    <%= f.label :use_for %>
+    <%= f.text_field :use_for %>
     <%= f.submit %>
     <%= link_to "Delete", admin_param_template_path(param_template), method: :delete %>
   <% end %>
