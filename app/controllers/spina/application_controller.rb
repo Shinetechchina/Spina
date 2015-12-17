@@ -22,8 +22,9 @@ module Spina
 
     def current_account
       @current_account ||= Account.find_by(subdomain: request.subdomain)
-
       raise ActiveRecord::RecordNotFound if @current_account.blank?
+
+      @current_account
     end
     helper_method :current_account
   end
