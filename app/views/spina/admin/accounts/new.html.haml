@@ -1,6 +1,7 @@
 - content_for :permanent_notice do
-  - if @account.errors.present?
-    = @account.errors.full_messages.join(', ')
+  .notification.notification-error
+    - if @account.errors.present?
+      = @account.errors.full_messages.join(', ')
 
 = form_for [spina, :admin, @account] do |f|
   .table-container

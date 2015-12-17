@@ -25,7 +25,7 @@ module Spina
         @account = Account.new(account_params)
         if @account.save
           current_user.accounts << @account
-          redirect_to spina.admin_pages_url
+          redirect_to spina.admin_account_pages_path(@account)
         else
           add_breadcrumb I18n.t('spina.accounts.new')
           render :new, layout: "spina/admin/account"
