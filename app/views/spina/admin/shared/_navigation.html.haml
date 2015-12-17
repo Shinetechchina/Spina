@@ -1,7 +1,7 @@
 %nav#primary
   %ul
     %li{class: ('active' if (%w[pages photos attachments] + Spina.plugins(:website_resource).map { |plugin| plugin.config.controller if current_theme.config.plugins.include?(plugin.name.downcase) }).include? controller_name)}
-      = link_to spina.admin_pages_path do
+      = link_to spina.admin_account_pages_path(current_account) do
         = icon('home')
 
     %li{class: ('active' if %w[inquiries].include? controller_name)}

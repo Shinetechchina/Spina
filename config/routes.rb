@@ -11,6 +11,10 @@ Spina::Engine.routes.draw do
         get :social
         get :aviary
       end
+      
+      resources :pages do
+        post :sort, on: :collection
+      end
     end
 
     resources :users
@@ -22,10 +26,6 @@ Spina::Engine.routes.draw do
 
     # Media library
     get 'media_library' => 'photos#index', as: "media_library"
-
-    resources :pages do
-      post :sort, on: :collection
-    end
 
     resources :page_parts do
       collection do

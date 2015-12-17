@@ -4,7 +4,7 @@
 
     %ul
       %li{class: ('active' if params[:controller] == "spina/admin/pages")}
-        = link_to spina.admin_pages_path do
+        = link_to spina.admin_account_pages_path(current_account) do
           = icon('pages')
           = t('spina.website.pages')
           %small= t('spina.website.pages_description')

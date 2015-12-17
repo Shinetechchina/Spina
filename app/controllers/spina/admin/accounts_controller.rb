@@ -5,6 +5,7 @@ module Spina
       before_filter :check_account_valid, except: [:new, :create]
       authorize_resource class: Account
       layout "spina/admin/settings", except: :index
+      before_action :set_account, only: [:edit, :update, :destroy]
 
       def index
         @accounts = current_user.accounts
@@ -36,7 +37,7 @@ module Spina
       end
 
       def update
-        if current_account.update_attributes(account_params)
+        if @account.update_attributes(account_params)
           redirect_to :back
         else
           redirect_to :back
@@ -44,7 +45,6 @@ module Spina
       end
 
       def destroy
-        @account = current_user.accounts.friendly.find(params[:id])
         @account.destroy
 
         redirect_to spina.admin_accounts_path
@@ -69,6 +69,10 @@ module Spina
       end
 
       private
+
+      def set_account
+        @account = current_user.accounts.friendly.find(params[:id])
+      end
 
       def check_account_valid
         unless current_account.active?

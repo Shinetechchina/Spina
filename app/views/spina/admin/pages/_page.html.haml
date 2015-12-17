@@ -1,6 +1,6 @@
 %li.dd-item{data: {id: page.id}}
   %div.dd-item-inner
-    = link_to spina.edit_admin_page_path(page), class: 'button button-link button-small sortable-link' do
+    = link_to spina.edit_admin_account_page_path(@account, page), class: 'button button-link button-small sortable-link' do
       = page.menu_title
       - if page.draft?
         %small (#{t('spina.pages.concept')})
@@ -11,7 +11,7 @@
         %small (#{raw t('spina.pages.skip_to_first_child')})
 
     %span.pull-right
-      = link_to spina.edit_admin_page_path(page), class: 'button button-small button-link dd-nodrag' do
+      = link_to spina.edit_admin_account_page_path(@account, page), class: 'button button-small button-link dd-nodrag' do
         = icon('pencil-outline')
         = t('spina.edit')
 

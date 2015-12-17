@@ -1,4 +1,4 @@
-= form_for [spina, :admin, @page], multipart: true, html: {autocomplete: "off"} do |f|
+= form_for [spina, :admin, @account, @page], multipart: true, html: {autocomplete: "off"} do |f|
   - content_for :notification_alert do
     = error_explanation!(@page)
 
@@ -9,7 +9,7 @@
     = icon('check')
     =t 'spina.pages.save'
 
-  = link_to t('spina.cancel'), spina.admin_pages_path, class: 'button button-link'
+  = link_to t('spina.cancel'), spina.admin_account_pages_path(@account), class: 'button button-link'
 
   - unless @page.new_record? || !@page.deletable
-    .pull-right= link_to t('spina.permanently_delete'), spina.admin_page_path(@page), method: :delete, data: {confirm: t('spina.pages.delete_confirmation', subject: @page.menu_title)}, class: 'button button-link button-danger'
+    .pull-right= link_to t('spina.permanently_delete'), spina.admin_account_page_path(@account, @page), method: :delete, data: {confirm: t('spina.pages.delete_confirmation', subject: @page.menu_title)}, class: 'button button-link button-danger'
