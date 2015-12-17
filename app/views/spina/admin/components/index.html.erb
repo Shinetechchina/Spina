@@ -16,9 +16,9 @@
       <tr>
         <td><%= component.name %></td>
         <td><%= component.use_for %></td>
-        <td><%= link_to 'Show', admin_component_template_path(component) %></td>
-        <td><%= link_to 'Edit', edit_admin_component_template_path(component) %></td>
-        <td><%= link_to 'Destroy', admin_component_template_path(component), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', admin_component_path(component) %></td>
+        <td><%= link_to 'Edit', edit_admin_component_path(component) %></td>
+        <td><%= link_to 'Destroy', admin_component_path(component), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Component', new_admin_component_template_path %>
+<%= link_to 'New Component', new_admin_component_path %>

@@ -14,10 +14,10 @@ Spina::Engine.routes.draw do
     end
 
     resources :users
-    resources :component_templates do
-      resources :param_templates, only: [:new]
+    resources :components do
+      resources :component_params, only: [:new]
     end
-    resources :param_templates, only: [:destroy, :update, :create]
+    resources :component_params, only: [:destroy, :update, :create]
     # Sessions
     resources :sessions
     get "login" => "sessions#new"

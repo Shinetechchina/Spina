@@ -6,12 +6,12 @@ module Spina
         content_tag(:i, nil, class: "icon icon-#{name}")
       end
 
-      def component_templates
-        ComponentTemplate.all
+      def components
+        Component.all
       end
 
-      def components
-        @page.components
+      def page_components
+        @page.page_components
       end
     end
   end

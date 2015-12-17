@@ -29,6 +29,5 @@
 <% end %>
 
 <% if !@component.new_record? %>
-  <%= render partial: "param_templates", locals: {param_templates: @component.param_templates, component: @component} %>
+  <%= render partial: "component_params", locals: {component_params: @component.component_params, component: @component} %>
 <% end %>
-  

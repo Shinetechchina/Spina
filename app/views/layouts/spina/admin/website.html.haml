@@ -15,11 +15,11 @@
           = t('spina.website.media_library')
           %small= t('spina.website.media_library_description')
 
-      %li{class: ('active' if params[:controller] == "spina/admin/pages/component_templates")}
-        = link_to spina.admin_component_templates_path do
+      %li{class: ('active' if params[:controller] == "spina/admin/pages/components")}
+        = link_to spina.admin_components_path do
           = icon('pages')
-          = t('spina.website.component_templates')
-          %small= t('spina.website.component_templates_description')
+          = t('spina.website.components')
+          %small= t('spina.website.components_description')
 
       - Spina.plugins(:website_resource).each do |plugin|
         - if current_theme.config.plugins.include? plugin.name.downcase

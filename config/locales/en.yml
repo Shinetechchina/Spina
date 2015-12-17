@@ -32,8 +32,8 @@ en:
       media_library_description: "Here's where you'll find all of your images and documents"
       documents: Documents
       photos: Images
-      component_templates: Components
-      component_templates_description: "All components on your website"
+      components: Components
+      components_description: "All components on your website"
 
     accounts:
       new: New website

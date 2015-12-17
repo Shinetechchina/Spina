@@ -1,0 +1,10 @@
+<%= form_for component do |f| %>
+  <%= f.label :name %>
+  ComponentParams
+  <%= f.fields_for :component_params do |param_form| %>
+    <%= param_form.label :name %>
+    <%= param_form.label :use_for %>
+    <%= param_form.text_field :param_value %>
+    <%= param_form.submit%>
+  <% end %>
+<% end %>
