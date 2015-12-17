@@ -10,7 +10,7 @@ module Spina
       private
 
       def authorize_user
-        redirect_to spina.admin_login_url, flash: {information: I18n.t('spina.notifications.login')} unless current_user
+        redirect_to "%s%s/%s" % [request.protocol, request.domain, 'admin/login'],  flash: {information: I18n.t('spina.notifications.login')} unless current_user
       end
 
       def new_messages

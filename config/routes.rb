@@ -16,7 +16,7 @@ Spina::Engine.routes.draw do
     resources :users
 
     # Sessions
-    resources :sessions
+    resources :sessions, only: [:new, :create]
     get "login" => "sessions#new"
     get "logout" => "sessions#destroy"
 

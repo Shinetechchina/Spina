@@ -13,8 +13,9 @@ module Spina
         user = User.where(email: params[:email]).first
         if user && user.authenticate(params[:password])
           session[:user_id] = user.id
+          session[:domain] = request.domain
           user.update_last_logged_in!
-          redirect_to spina.admin_accounts_url
+          redirect_to "%s%s/%s" % [request.protocol, request.domain, 'admin']
         else
           flash.now[:alert] = I18n.t('spina.notifications.wrong_username_or_password')
           render "new"
