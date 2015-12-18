@@ -1,10 +1,17 @@
-<%= form_for component do |f| %>
-  <%= f.label :name %>
-  ComponentParams
-  <%= f.fields_for :component_params do |param_form| %>
-    <%= param_form.label :name %>
-    <%= param_form.label :use_for %>
-    <%= param_form.text_field :param_value %>
-    <%= param_form.submit%>
-  <% end %>
+<%= form_for [:admin, page_component], html: {class: "form-component"} do |f| %>
+  <h3><%= component.name%></h3>
+  <h5><%= component.use_for%></h5>
+  <%= f.hidden_field :component_id%>
+  <%= f.hidden_field :page_id%>
+  <div class="params-container">
+    <%= f.fields_for :page_component_params do |param_form| %>
+      <div>
+        <%= param_form.object.name%>(<%= param_form.object.use_for %>)
+      </div>
+      <%= param_form.hidden_field :component_param_id%>
+      <%= param_form.text_field :param_value %>
+    <% end %>
+  </div>
+  <%= f.submit class: "button button-primary"%>
+  <%= link_to "Delete", admin_page_component_path(page_component), method: :delete %>
 <% end %>

@@ -1,0 +1,12 @@
+if($("#page-components").length === 0) {
+  $("#main").append("<%= j render(:partial => 'index', locals: {page_components: @page_components,components: @components})%>");
+
+  $("#btn-hide-components").bind("click", function() {
+    $(this).hide();
+    $("#page-components").hide();
+    $("#btn-show-components").show();
+  });
+}
+$("#btn-show-components").hide();
+$("#btn-hide-components").show();
+$("#page-components").show();

@@ -28,7 +28,10 @@ Spina::Engine.routes.draw do
 
     resources :pages do
       post :sort, on: :collection
+      resources :page_components, only: [:new, :index]
     end
+
+    resources :page_components, only: [:destroy, :update, :create]
 
     resources :page_parts do
       collection do

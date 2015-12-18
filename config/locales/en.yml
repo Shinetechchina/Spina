@@ -70,6 +70,8 @@ en:
       skip_to_first_child: forward to first child page
       invisible_to_search_engines: Your website is invisible to search engines
       invisible_to_search_engines_description: Go to your preferences to activate search engines.
+      show_component: Show components
+      hide_component: Hide components
 
     users:
       new: New user

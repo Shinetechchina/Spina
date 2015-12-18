@@ -24,3 +24,35 @@
   display: block;
   margin-bottom: 5px;
 }
+.component-container {
+  background-color: rgba(135, 135, 137, 0.29);
+  border-radius: 4px;
+  padding: 15px;
+  h5 {
+    border-bottom: solid white 1px;
+    padding: 5px 0;
+  }
+}
+.form-component {
+  margin: 10px 0;
+  background-color: gray;
+  padding: 15px;
+  border-radius: 4px;
+}
+.select-components {
+  select {
+    display: block;
+    margin-bottom: 15px;
+  }
+  button {
+    display: block;
+  }
+}
+.params-container {
+  margin: 10px 0;
+  div {
+    font-weight: normal;
+    font-size: 15px;
+    margin: 10px 0;
+  }
+}

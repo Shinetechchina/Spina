@@ -21,9 +21,9 @@ class DynamicComponents < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table "spina_component_values", force: :cascade do |t|
+    create_table "spina_page_component_params", force: :cascade do |t|
       t.string :param_value
-      t.belongs_to :component
+      t.belongs_to :page_component
       t.belongs_to :component_param
       t.timestamps
     end

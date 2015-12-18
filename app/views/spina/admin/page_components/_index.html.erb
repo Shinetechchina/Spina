@@ -1,0 +1,23 @@
+<div class="component-container" id="page-components">
+  <% if @components.present? %>
+    <div class="select-components">
+      <%= select(:page, :component_id, @components.map{ |component| [component.name, component.id]}) %>
+      <button type="button" name="button" id="btn-new-component" class="button button-primary">New component</button>
+    </div>
+    <% page_components.each do |page_component| %>
+      <%= render partial: 'form', locals: {page_component: page_component, component: page_component.component} %>
+    <% end %>
+  <% else %>
+    You have not defined any components, please define your custom components at first.
+    <%= link_to "Define components", new_admin_components_path%>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $("#btn-new-component").bind("click", function() {
+    $.ajax({
+      url: "page_components/new",
+      data: {component_id: $("#page_component_id").val()}
+    });
+  });
+</script>

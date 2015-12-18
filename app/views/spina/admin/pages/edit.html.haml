@@ -4,5 +4,6 @@
       - @tabs.each_with_index do |tab, i|
         %li{class: (i==0 ? 'active' : '')}
           = link_to t("spina.pages.#{tab}"), "##{tab}"
-
 = render 'form'
+= link_to t('spina.pages.show_component'), spina.admin_page_page_components_path(@page.id), class: 'button button-link', remote: true, id: "btn-show-components"
+%button#btn-hide-components.button.button-link{:style => "display:none"} Hide component
