@@ -1,20 +1,24 @@
 %nav#primary
   %ul
-    %li{class: ('active' if (%w[pages photos attachments] + Spina.plugins(:website_resource).map { |plugin| plugin.config.controller if current_theme.config.plugins.include?(plugin.name.downcase) }).include? controller_name)}
+    %li
       = link_to spina.admin_accounts_path do
         = icon('home')
 
+    %li{class: ('active' if %w[pages photos attachments].include? controller_name)}
+      = link_to spina.admin_account_pages_path(@account) do
+        = icon('pages')
+
     %li{class: ('active' if %w[inquiries].include? controller_name)}
       - if @new_messages.present?
-        = link_to spina.inbox_admin_inquiries_path, data: {badge: "#{@new_messages.size}"} do
+        = link_to spina.inbox_admin_account_inquiries_path(@account), data: {badge: "#{@new_messages.size}"} do
           = icon('mail')
-      - elsif current_account.active?
-        = link_to spina.admin_inquiries_path do
+      - elsif current_user.account_active?
+        = link_to spina.admin_account_inquiries_path(@account) do
           = icon('mail')
 
     %li{class: ('active' if %w[accounts users tenants].include? controller_name)}
-      - if current_account.active?
-        = link_to spina.edit_admin_account_path(current_account) do
+      - if current_user.account_active?
+        = link_to spina.edit_admin_account_path(@account) do
           = icon('cog')
 
     %li.bottom

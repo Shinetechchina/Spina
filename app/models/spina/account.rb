@@ -40,10 +40,6 @@ module Spina
       layout_part.try(:content)
     end
 
-    def active?
-      self.id.present? && self.name.present?
-    end
-
     private
 
     def bootstrap_website

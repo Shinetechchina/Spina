@@ -1,5 +1,5 @@
 module Spina
-  class PagesController < ApplicationController
+  class PagesController < BaseController
     before_action :current_user_can_view_page?, except: [:robots]
 
     def homepage

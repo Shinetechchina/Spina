@@ -7,9 +7,9 @@
         = icon('italic')
       = link_to "#", class: 'command command-insert-unordered-list', data: {:"wysihtml5-command" => "insertUnorderedList"} do
         = icon('list-ul')
-      = link_to spina.wysihtml5_link_admin_page_parts_path(text_form.object.object_id), class: 'command', remote: true do
+      = link_to spina.wysihtml5_link_admin_account_page_parts_path(@account, text_form.object.object_id), class: 'command', remote: true do
         = icon('link')
-      = link_to spina.wysihtml5_select_admin_photos_path(text_form.object.object_id), class: 'command', remote: true do
+      = link_to spina.wysihtml5_select_admin_account_photos_path(@account, text_form.object.object_id), class: 'command', remote: true do
         = icon('picture-o')
 
       .pull-right

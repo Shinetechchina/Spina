@@ -1,5 +1,5 @@
 .modal
-  = form_tag spina.wysihtml5_link_admin_page_parts_path(params[:object_id]), method: :post, remote: true do
+  = form_tag spina.wysihtml5_link_admin_account_page_parts_path(@account, params[:object_id]), method: :post, remote: true do
     %header
       = link_to "", "#", class: 'close_modal', data: {dismiss: 'modal', icon: 'm'}
       %h3=t 'spina.wysiwyg.insert_link'

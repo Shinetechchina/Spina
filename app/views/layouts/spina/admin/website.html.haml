@@ -1,16 +1,16 @@
 - content_for :secondary_navigation do
   %nav#secondary
-    %h1= t('spina.website.title')
+    %h1= @account.name
 
     %ul
       %li{class: ('active' if params[:controller] == "spina/admin/pages")}
-        = link_to spina.admin_account_pages_path(current_account) do
+        = link_to spina.admin_account_pages_path(@account) do
           = icon('pages')
           = t('spina.website.pages')
           %small= t('spina.website.pages_description')
 
       %li{class: ('active' if params[:controller] == "spina/admin/photos" || params[:controller] == "spina/admin/attachments")}
-        = link_to spina.admin_photos_path do
+        = link_to spina.admin_account_photos_path(@account) do
           = icon('image')
           = t('spina.website.media_library')
           %small= t('spina.website.media_library_description')

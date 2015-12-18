@@ -41,6 +41,6 @@
     = icon('random')
     = t('spina.pages.change_order')
 
-.dd#pages_list{data: {:"sort-url" => spina.sort_admin_account_pages_url }}
+.dd#pages_list{data: {:"sort-url" => spina.sort_admin_account_pages_url(@account) }}
   %ol.dd-list
     = render partial: 'page', collection: @pages.roots

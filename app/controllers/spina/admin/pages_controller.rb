@@ -2,9 +2,10 @@ module Spina
   module Admin
     class PagesController < AdminController
 
+      before_action :set_account
       before_filter :set_breadcrumb
       before_filter :set_tabs, only: [:new, :create, :edit, :update]
-      before_action :set_account
+      before_action :set_theme, only: [:new, :edit]
 
       authorize_resource class: Page
 
@@ -16,18 +17,18 @@ module Spina
 
       def new
         @page = @account.pages.new
-        if current_theme.new_page_templates.any? { |template| template[0] == params[:view_template] }
+        if @theme.new_page_templates.any? { |template| template[0] == params[:view_template] }
           @page.view_template = params[:view_template]
         end
         add_breadcrumb I18n.t('spina.pages.new')
-        @page_parts = current_theme.config.page_parts.map { |page_part| @page.page_part(page_part) }
+        @page_parts = @theme.config.page_parts.map { |page_part| @page.page_part(page_part) }
       end
 
       def create
         @page = @account.pages.new(page_params)
         add_breadcrumb I18n.t('spina.pages.new')
         if @page.save
-          redirect_to spina.edit_admin_account_page_url(@account, @page)
+          redirect_to spina.edit_admin_account_page_path(@account, @page)
         else
           @page_parts = @page.page_parts
           render :new
@@ -37,7 +38,7 @@ module Spina
       def edit
         @page = @account.pages.find(params[:id])
         add_breadcrumb @page.title
-        @page_parts = current_theme.config.page_parts.map { |page_part| @page.page_part(page_part) }
+        @page_parts = @theme.config.page_parts.map { |page_part| @page.page_part(page_part) }
       end
 
       def update
@@ -45,7 +46,7 @@ module Spina
         add_breadcrumb @page.title
         respond_to do |format|
           if @page.update_attributes(page_params)
-            format.html { redirect_to spina.edit_admin_account_page_url(@account, @page) }
+            format.html { redirect_to spina.edit_admin_account_page_path(@account, @page) }
             format.js
           else
             format.html do
@@ -78,12 +79,16 @@ module Spina
 
       private
 
+      def set_theme
+        @theme = Spina.theme(@account.theme) || ::Spina.themes.first
+      end
+
       def set_account
         @account = current_user.accounts.friendly.find(params[:account_id])
       end
 
       def set_breadcrumb
-        add_breadcrumb I18n.t('spina.website.pages'), spina.admin_account_pages_path(set_account)
+        add_breadcrumb I18n.t('spina.website.pages'), spina.admin_account_pages_path(@account)
       end
 
       def set_tabs

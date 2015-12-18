@@ -1,6 +1,6 @@
 .gallery
   .item
-    = form_for [spina, :admin, @photo], html: {multipart: true} do |f|
+    = form_for [spina, :admin, @account, @photo], html: {multipart: true} do |f|
       = f.file_field :file, data: {customfileinput: true}
 
   .gallery-prepend-image

@@ -5,7 +5,7 @@ module Spina
       before_filter :check_account_valid, except: [:new, :create]
       authorize_resource class: Account
       layout "spina/admin/settings", except: :index
-      before_action :set_account, only: [:edit, :update, :destroy]
+      before_action :set_account, except: [:new, :index, :create]
 
       def index
         @accounts = current_user.accounts
@@ -33,7 +33,7 @@ module Spina
       end
 
       def edit
-        add_breadcrumb I18n.t('spina.preferences.account'), spina.edit_admin_account_path
+        add_breadcrumb I18n.t('spina.preferences.account'), spina.edit_admin_account_path(@account)
       end
 
       def update
@@ -65,7 +65,7 @@ module Spina
       def style
         add_breadcrumb I18n.t('spina.preferences.style'), spina.style_admin_account_path
         @themes = ::Spina.themes
-        @layout_parts = current_theme.config.layout_parts.map { |layout_part| current_account.layout_part(layout_part) }
+        @layout_parts = current_theme.config.layout_parts.map { |layout_part| @account.layout_part(layout_part) }
       end
 
       private
@@ -75,8 +75,8 @@ module Spina
       end
 
       def check_account_valid
-        unless current_account.active?
-          redirect_to spina.new_admin_account_url
+        unless current_user.account_active?
+          redirect_to spina.new_admin_account_path
         end
       end
 

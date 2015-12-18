@@ -6,7 +6,7 @@
   = attachment_form.hidden_field :page_partable_type
   = attachment_form.hidden_field :name
 
-  = link_to select_admin_attachments_path(attachment_form.object_name), remote: true, class: "media_picker" do
+  = link_to select_admin_account_attachments_path(@account, attachment_form.object_name), remote: true, class: "media_picker" do
     - if attachment_form.object.page_partable && attachment_form.object.page_partable.file.present?
       .attachment= attachment_form.object.page_partable.name
     - else

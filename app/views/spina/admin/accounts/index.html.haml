@@ -1,6 +1,7 @@
-%button.button.button-success{type: 'submit'}
-  = link_to spina.new_admin_account_path do
-    = t('spina.account.new', default: 'new account')
+.filters
+  = link_to spina.new_admin_account_path, class: 'button button-primary' do
+    = icon('plus')
+    = t('spina.accounts.new', default: 'New Account')
 
 %table.table.datatable
   %thead

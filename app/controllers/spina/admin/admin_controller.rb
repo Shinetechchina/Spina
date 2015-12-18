@@ -18,9 +18,15 @@ module Spina
       end
 
       def current_account
-        @current_account ||= Account.find_by(custom_domain: request.host) || Account.find_by(subdomain: request.subdomain) || current_user.accounts.first || Account.new
+        @current_account = Account.find(params[:account_id]) || Account.find(params[:id])
+
+        @current_account
       end
-      helper_method :current_account
+
+      def current_theme
+        @current_theme = Spina.theme(@account.theme) || ::Spina.themes.first
+      end
+      helper_method :current_theme
 
       def current_user
         @current_user ||= User.where(id: session[:user_id]).first if session[:user_id]

@@ -17,6 +17,10 @@ module Spina
       name
     end
 
+    def account_active?
+      accounts.present?
+    end
+
     def update_last_logged_in!
       # self.last_logged_in = Time.now
       # self.save!
