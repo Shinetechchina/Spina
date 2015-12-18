@@ -4,7 +4,7 @@ module Spina
 
       before_filter :check_account_valid, except: [:new, :create]
       authorize_resource class: Account
-      layout "spina/admin/settings", except: :index
+      layout "spina/admin/settings"
       before_action :set_account, except: [:new, :index, :create]
 
       def index
