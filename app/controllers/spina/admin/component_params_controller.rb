@@ -9,8 +9,7 @@ module Spina
 
       def new
         @component = Component.find(params[:component_id])
-        @component_param = @component.component_params.build
-        @component_param.id = Time.now.to_i
+        @component_param = @component.component_params.build(id: Time.now.to_i)
       end
 
       def create

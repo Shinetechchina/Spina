@@ -9,7 +9,7 @@ module Spina
       def new
         page = Page.find(params[:page_id])
         @component = Component.find(params[:component_id])
-        @page_component = PageComponent.new(component_id: params[:component_id], page_id: page.id)
+        @page_component = PageComponent.new(id: Time.now.to_i, component_id: params[:component_id], page_id: page.id)
         @component.component_params.each do |component_param|
           @page_component.page_component_params.new(component_param_id: component_param.id)
         end
