@@ -1,8 +1,18 @@
 module Spina
   class BaseController < ApplicationController
+    before_action :set_subdomain
+
     private
+    def set_subdomain
+      @subdomain = request.subdomain
+
+      return redirect_to admin_root_path if @subdomain.blank?
+      @subdomain
+    end
+
     def current_account
-      @current_account = Account.find_by(subdomain: request.subdomain)
+
+      @current_account = Account.find_by(subdomain: @subdomain)
       raise ActiveRecord::RecordNotFound if @current_account.blank?
 
       @current_account
