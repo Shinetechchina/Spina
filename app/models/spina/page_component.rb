@@ -5,6 +5,6 @@ module Spina
 
     belongs_to :component
 
-    delegate :name, :use_for, to: :component, allow_nil: true
+    delegate :name, :use_for, :file_path,  to: :component, allow_nil: true
   end
 end

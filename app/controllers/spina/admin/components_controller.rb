@@ -2,6 +2,7 @@ module Spina
   module Admin
     class ComponentsController < AdminController
       before_filter :set_breadcrumb
+      before_action :check_page_use, only: [:destroy]
 
       layout "spina/admin/website"
 
@@ -52,7 +53,7 @@ module Spina
       def destroy
         @component = Component.find(params[:id])
         @component.destroy
-        redirect_to admin_components_url, notice: "The component has beed destroyed."
+        redirect_to admin_components_url, notice: I18n.t('spina.notifications.destroyed')
       end
 
       private
@@ -63,6 +64,13 @@ module Spina
 
       def component_params
         params.require(:component).permit(:name, :use_for, :file_path, :content)
+      end
+
+      def check_page_use
+        component = Component.find_by(id: params[:id])
+        if component.present? && component.component_params.any? {|c| c.page_component_params.any?}
+          redirect_to :back, notice: I18n.t('spina.notifications.modify_component_failed')
+        end
       end
     end
   end

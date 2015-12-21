@@ -23,6 +23,8 @@ en:
       alert: Oops! Something went wrong
       login: You have to login first
       wrong_username_or_password: Wrong email or password
+      modify_component_failed: Faild, because this component has beed used by page
+      destroyed: This component has beed destroyed
 
     website:
       title: Your website
