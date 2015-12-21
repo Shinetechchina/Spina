@@ -17,12 +17,6 @@ module Spina
         @new_messages = Inquiry.new_messages.sorted
       end
 
-      def current_account
-        @current_account = Account.find(params[:account_id]) || Account.find(params[:id])
-
-        @current_account
-      end
-
       def current_theme
         @current_theme = Spina.theme(@account.theme) || ::Spina.themes.first
       end
@@ -32,10 +26,6 @@ module Spina
         @current_user ||= User.where(id: session[:user_id]).first if session[:user_id]
       end
       helper_method :current_user
-
-      def current_ability
-        @current_ability ||= Ability.new(current_user)
-      end
 
     end
   end

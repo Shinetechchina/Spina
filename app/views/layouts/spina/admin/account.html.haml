@@ -16,6 +16,7 @@
     = javascript_include_tag "http://feather.aviary.com/imaging/v2/editor.js"
     = javascript_include_tag "spina/admin/application"
     = yield(:plugin_stylesheets) if content_for?(:plugin_stylesheets)
+  %body
     = render 'spina/admin/shared/admin_navigation'
     = yield(:secondary_navigation)
 
