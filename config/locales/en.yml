@@ -25,6 +25,7 @@ en:
       wrong_username_or_password: Wrong email or password
 
     website:
+      index: Websites
       title: Your website
       pages: Pages
       pages_description: "All pages on your website"
