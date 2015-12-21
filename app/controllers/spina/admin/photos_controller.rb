@@ -1,26 +1,27 @@
 module Spina
   module Admin
     class PhotosController < AdminController
+      before_filter :set_account
       before_filter :set_breadcrumbs
-      
+
       authorize_resource class: Photo
 
       layout "spina/admin/media_library"
 
       def index
-        add_breadcrumb I18n.t('spina.website.photos'), spina.admin_photos_path
-        @photos = current_account.photos.sorted
+        add_breadcrumb I18n.t('spina.website.photos'), spina.admin_account_photos_path(@account)
+        @photos = @account.photos.sorted
         @photo = Photo.new
       end
 
       def create
-        @photo = current_account.photos.create(photo_params)
+        @photo = @account.photos.create(photo_params)
       end
 
       def destroy
         @photo = Photo.find(params[:id])
         @photo.destroy
-        redirect_to spina.admin_photos_url
+        redirect_to spina.admin_account_photos_path(@account)
       end
 
       def enhance
@@ -34,13 +35,13 @@ module Spina
       end
 
       def photo_select
-        @photos = current_account.photos.sorted
+        @photos = @account.photos.sorted
         @photo = Photo.new
         @selected_photo = Photo.find(params[:selected_photo_id]) if params[:selected_photo_id]
       end
 
       def photo_collection_select
-        @photos = current_account.photos.sorted
+        @photos = @account.photos.sorted
         @photo = Photo.new
         @selected_photos = params[:selected_photo_ids] ? Photo.where(id: params[:selected_photo_ids]) : Photo.none
       end
@@ -58,14 +59,17 @@ module Spina
       end
 
       def wysihtml5_select
-        @photos = current_account.photos.sorted
+        @photos = @account.photos.sorted
         @photo = Photo.new
       end
 
       private
+      def set_account
+        @account = current_user.accounts.friendly.find(params[:account_id])
+      end
 
-      def set_breadcrumbs
-        add_breadcrumb I18n.t('spina.website.media_library'), spina.admin_media_library_path
+      def set_breadcrumbs        
+        add_breadcrumb I18n.t('spina.website.media_library'), spina.admin_account_media_library_path(@account)
       end
 
       def photo_params

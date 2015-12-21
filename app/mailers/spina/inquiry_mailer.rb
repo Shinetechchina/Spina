@@ -4,12 +4,12 @@ module Spina
 
     def inquiry(inquiry)
       @inquiry = inquiry
-      @current_account = Account.first
+      @account = Account.first
 
-      # attachments.inline['logo.jpg'] = LogoUploader.new.read(@current_account.logo) if @current_account.logo.url
+      # attachments.inline['logo.jpg'] = LogoUploader.new.read(@account.logo) if @account.logo.url
 
       mail( 
-        to: "\"#{@current_account.name}\" <#{ @current_account.email }>", 
+        to: "\"#{@account.name}\" <#{ @account.email }>", 
         from: "\"#{@inquiry.name}\" <#{@inquiry.email}>",
         subject: @inquiry.message.truncate(97, separator: ' ')
       )

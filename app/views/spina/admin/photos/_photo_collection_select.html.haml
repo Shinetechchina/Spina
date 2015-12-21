@@ -9,7 +9,7 @@
         = form_for [spina, :admin, @photo], html: {multipart: true} do |f|
           = f.file_field :file, data: {customfileinput: true}
           
-      = form_tag spina.insert_photo_collection_admin_photos_path(params[:page_part_id]), remote: true, class: 'gallery-prepend-image' do
+      = form_tag spina.insert_photo_collection_admin_account_photos_path(@account, params[:page_part_id]), remote: true, class: 'gallery-prepend-image' do
         - @photos.each do |photo|
           .item{class: ('selected' if @selected_photos.include?(photo))}
             .overlay= check_box_tag 'photo_ids[]', photo.id, @selected_photos.include?(photo)

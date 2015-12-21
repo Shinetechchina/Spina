@@ -5,7 +5,7 @@ module Spina
       
       authorize_resource class: User
 
-      layout "spina/admin/settings"
+      layout "spina/admin/account"
 
       def index
         @users = User.all
@@ -20,7 +20,7 @@ module Spina
         @user = User.new(user_params)
         add_breadcrumb I18n.t('spina.users.new')
         if @user.save
-          redirect_to admin_users_url
+          redirect_to admin_users_path
         else
           flash.now[:alert] = I18n.t('spina.users.cannot_be_created')
           render :new
@@ -36,7 +36,7 @@ module Spina
         @user = User.find(params[:id])
         add_breadcrumb "#{@user}"
         if @user.update_attributes(user_params)
-          redirect_to spina.admin_users_url
+          redirect_to spina.admin_users_path
         else
           flash.now[:alert] = I18n.t('spina.users.cannot_be_created')
           render :edit
@@ -46,7 +46,7 @@ module Spina
       def destroy
         @user = User.find(params[:id])
         @user.destroy unless @user == current_user
-        redirect_to admin_users_url
+        redirect_to admin_users_path
       end
 
       private
