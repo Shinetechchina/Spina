@@ -29,7 +29,7 @@ module Spina
         case params["action"]
           when "destroy"
             component_param = ComponentParam.find_by(id: params[:id])
-            redirect_to :back, notice: I18n.t('spina.notifications.modify_component_failed') and return if component_param.present? && component_param.page_component_params.present?
+            redirect_to :back, alert: I18n.t('spina.notifications.modify_component_failed') and return if component_param.present? && component_param.page_component_params.present?
           when "new"
             component_id = params[:component_id]
           when "create"
@@ -38,7 +38,7 @@ module Spina
             component_id = update_params[:component_id]
         end
         if Component.find(component_id).component_params.any?{|c| c.page_component_params.any?}
-          redirect_to :back, notice: I18n.t('spina.notifications.modify_component_failed')
+          redirect_to :back, alert: I18n.t('spina.notifications.modify_component_failed')
         end
       end
     end

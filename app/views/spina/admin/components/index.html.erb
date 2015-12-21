@@ -2,20 +2,20 @@
 
 <h1>Listing Component Templates</h1>
 
-<table>
+<table class="table-component">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Use for</th>
-      <th colspan="3"></th>
+      <th class="col-20">Name</th>
+      <th class="col-50">Use for</th>
+      <th class="col-30"colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @components.each do |component| %>
       <tr>
-        <td><%= component.name %></td>
-        <td><%= component.use_for %></td>
+        <td class="col-20"><%= component.name %></td>
+        <td class="col-50"><%= component.use_for %></td>
         <td><%= link_to 'Show', admin_component_path(component) %></td>
         <td><%= link_to 'Edit', edit_admin_component_path(component) %></td>
         <td><%= link_to 'Destroy', admin_component_path(component), method: :delete, data: { confirm: 'Are you sure?' } %></td>

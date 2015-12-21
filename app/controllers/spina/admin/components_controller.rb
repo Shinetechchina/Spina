@@ -41,7 +41,6 @@ module Spina
 
       def update
         @component = Component.find(params[:id])
-
         add_breadcrumb @component.name
         if @component.update_attributes(component_params)
           redirect_to :back
@@ -69,7 +68,7 @@ module Spina
       def check_page_use
         component = Component.find_by(id: params[:id])
         if component.present? && component.component_params.any? {|c| c.page_component_params.any?}
-          redirect_to :back, notice: I18n.t('spina.notifications.modify_component_failed')
+          redirect_to :back, alert: I18n.t('spina.notifications.modify_component_failed')
         end
       end
     end
