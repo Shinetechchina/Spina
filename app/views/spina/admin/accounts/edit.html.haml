@@ -1,1 +1,9 @@
+- if @account.errors.present?
+  %aside#notifications
+  #error_explanation.notification.notification-error{"data-icon" => "m"}
+    %p There are some missing fields...
+    %ul
+      - @account.errors.full_messages.each do |message|
+        %li 
+          = message
 = render 'form'
