@@ -9,7 +9,7 @@ module Spina
 
       def index
         @accounts = current_user.accounts
-        add_breadcrumb I18n.t('spina.accounts.index', default: 'accounts')
+        add_breadcrumb I18n.t('spina.accounts.index', default: 'websites')
         
         render layout: "spina/admin/account"
       end
