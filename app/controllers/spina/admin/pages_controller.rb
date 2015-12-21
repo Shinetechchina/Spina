@@ -5,7 +5,7 @@ module Spina
       before_action :set_account
       before_filter :set_breadcrumb
       before_filter :set_tabs, only: [:new, :create, :edit, :update]
-      before_action :set_theme, only: [:new, :edit]
+      before_action :set_theme
 
       authorize_resource class: Page
 
