@@ -38,6 +38,8 @@ module Spina
 
       def update
         if @account.update_attributes(account_params)
+          return redirect_to spina.edit_admin_account_path(@account) if account_params[:name].present?
+          
           redirect_to :back
         else
           redirect_to :back
