@@ -26,47 +26,6 @@ show_page_parts = (page_parts) ->
   for page_part in page_parts
     $('tr.page-part[data-name=' + page_part + ']').show()
 
-# Dynamically add and remove fields in a nested form
-$(document).on 'click', 'form .add_fields', (event) ->
-  time = new Date().getTime()
-  regexp = new RegExp($(this).data('id'), 'g')
-  $(this).before($(this).data('fields').replace(regexp, time))
-  event.preventDefault()
-
-$(document).on 'click', 'form .remove_fields', (event) ->
-  $(this).prev('input[type=hidden]').val('1')
-  $(this).closest('fieldset').slideUp()
-  event.preventDefault()
-
-# Dynamically add and remove structures
-$(document).on 'click', 'form .add_structure', (event) ->
-  $structureForm = $(this).parents('.structure-form')
-
-  time = new Date().getTime()
-  regexp = new RegExp($(this).data('id'), 'g')
-  $fields = $($(this).data('fields').replace(regexp, time))
-  $structureForm.find('.structure-form-content').append($fields)
-
-  $link = $("<li><a href='#structure_form_pane_#{time}'><i class='icon icon-bars'></i> </a></li>")
-
-  $structureForm.find('.structure-form-menu ul').append($link)
-  $fields.attr('id', "structure_form_pane_#{time}")
-
-  $link.find('a').click()
-
-  event.preventDefault()
-
-$(document).on 'click', 'form .remove-structure-item-fields', (event) ->
-  $(this).prev('input[type=hidden]').val('1')
-  $pane = $(this).closest('.structure-form-pane')
-  $link = $("a[href='##{$pane.attr('id')}']").parents('li')
-  $previousLink = $link.siblings('li:visible')
-
-  $previousLink.find('a').trigger('click')
-  $link.hide()
-  $pane.hide()
-  event.preventDefault()
-
 # Sort pages
 $(document).on 'click', '.sort-switch', (event) ->
   $($(this).attr('href') + ' .dd-item-inner').toggleClass('dd-handle')

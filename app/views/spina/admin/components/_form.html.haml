@@ -1,0 +1,46 @@
+- if @component.errors.any?
+  - content_for :notification_alert do
+    .notification.notification-error{data: {icon: 'm'}}
+      %p 
+        = Spina::User.human_attribute_name :cannot_be_created
+        %small
+          - @component.errors.full_messages.each do |msg|
+            = msg
+            %br/
+
+= form_for [spina, :admin, @component] do |f|
+  .table-container
+    %table.table.table-form
+      %tr
+        %td
+          = Spina::Component.human_attribute_name :name
+        %td
+          = f.text_field :name, placeholder: Spina::User.human_attribute_name(:name_placeholder), class: 'large'
+
+      %tr
+        %td
+          = Spina::User.human_attribute_name :content
+          %small= Spina::Component.human_attribute_name :content
+        %td
+          = f.text_area :content, placeholder: Spina::Component.human_attribute_name(:content)
+
+      %tr
+        %td
+          = Spina::Component.human_attribute_name :use_for
+          %small= Spina::Component.human_attribute_name :use_for
+        %td
+          = f.text_field :use_for, placeholder: Spina::Component.human_attribute_name(:use_for)
+      %tr
+        %td
+          %h3 components
+          #component_params
+            = f.fields_for :component_params do |component_param|
+              = render 'component_param_fields', f: component_param
+            .links
+              = link_to_add_association 'add component param', f, :component_params
+
+  %button.button.button-primary{type: 'submit'}
+    = icon('check')
+    =t('spina.components.save')
+
+  = link_to t('spina.cancel'), spina.admin_components_path, class: 'button button-link'

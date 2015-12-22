@@ -6,3 +6,4 @@
 //= require ./pages
 //= require ./account
 //= require ./confirm_delete
+//= require cocoon

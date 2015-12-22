@@ -3,6 +3,7 @@ module Spina
     has_secure_password
 
     has_and_belongs_to_many :accounts
+    has_many :components
 
     validates_presence_of :name, :email
     validates_presence_of :password, on: :create
