@@ -5,6 +5,7 @@ class DynamicComponents < ActiveRecord::Migration
       t.string :use_for
       t.text :content, null:false
       t.string :file_path, null:false
+      t.belongs_to :user
       t.timestamps
     end
 
