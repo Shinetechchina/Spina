@@ -1,7 +1,6 @@
 module Spina
   module Admin
     class ComponentParamsController < AdminController
-      before_action :is_page_params_exist?
       def new
         @component = Component.find(params[:component_id])
         @component_param = @component.component_params.build(id: Time.now.to_i)
@@ -24,22 +23,6 @@ module Spina
       end
       def create_params
         params.require(:component_param).permit(:name, :use_for, :component_id)
-      end
-      def is_page_params_exist?
-        case params["action"]
-          when "destroy"
-            component_param = ComponentParam.find_by(id: params[:id])
-            redirect_to :back, alert: I18n.t('spina.notifications.modify_component_failed') and return if component_param.present? && component_param.page_component_params.present?
-          when "new"
-            component_id = params[:component_id]
-          when "create"
-            component_id = create_params[:component_id]
-          when "update"
-            component_id = update_params[:component_id]
-        end
-        if Component.find(component_id).component_params.any?{|c| c.page_component_params.any?}
-          redirect_to :back, alert: I18n.t('spina.notifications.modify_component_failed')
-        end
       end
     end
   end

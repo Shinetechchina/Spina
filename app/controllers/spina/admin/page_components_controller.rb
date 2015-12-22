@@ -3,6 +3,10 @@ module Spina
     class PageComponentsController < AdminController
       def index
         @page_components = Page.find(params[:page_id]).page_components
+        (@page_components.map{|pc| pc.component.component_params}).flatten.each do |component_param|
+          page_component = PageComponent.find_by(page_id: params[:page_id], component_id: component_param.component_id)
+          page_component.page_component_params.find_or_create_by!(component_param_id: component_param.id)
+        end
         @components = Component.all
       end
 
