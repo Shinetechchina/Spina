@@ -80,8 +80,6 @@ GEM
     better_errors (1.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
-    binding_of_caller (0.7.2)
-      debug_inspector (>= 0.0.1)
     bourbon (3.2.4)
       sass (~> 3.2)
       thor
@@ -115,7 +113,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
-    debug_inspector (0.0.2)
     docile (1.1.5)
     dotenv (2.0.2)
     dotenv-rails (2.0.2)
@@ -217,6 +214,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.0)
@@ -293,7 +292,6 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
-  binding_of_caller
   brakeman
   codeclimate-test-reporter
   dotenv-rails
@@ -304,6 +302,7 @@ DEPENDENCIES
   letter_opener
   minitest-reporters
   pg
+  pry-rails
   quiet_assets
   spina!
   spina-template!
