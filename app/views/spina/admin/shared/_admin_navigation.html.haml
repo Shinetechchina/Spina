@@ -1,0 +1,21 @@
+%nav#primary
+  %ul
+    %li{class: ('active' if (%w[accounts] + Spina.plugins(:website_resource).map { |plugin| plugin.config.controller if current_theme.config.plugins.include?(plugin.name.downcase) }).include? controller_name)}
+      = link_to spina.admin_accounts_path do
+        = icon('home')
+
+    - if can? :manage, Spina::User
+      %li{class: ('active' if %w[users].include? controller_name)}
+        = link_to spina.admin_users_path do
+          = icon('users-outline')
+          = t('spina.preferences.users')
+    
+    %li{class: ('active' if %w[components].include? controller_name)}
+      = link_to spina.admin_components_path do
+        = icon('pages')
+        = t('spina.website.components')
+        %small= t('spina.website.components_description')
+          
+    %li.bottom
+      = link_to spina.admin_logout_path, data: {no_turbolink: true} do
+        = icon('power-off')

@@ -21,6 +21,10 @@ module Spina
       end
     end
 
+    def preview_with_subdomain(subdomain)
+      "%s%s.%s" % [request.protocol, subdomain, request.domain]
+    end
+
     def link_to_add_fields(name, f, association)
       new_object = f.object.send(association).klass.new
       id = new_object.object_id

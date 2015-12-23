@@ -27,6 +27,7 @@ en:
       destroyed: This component has beed destroyed
 
     website:
+      index: Websites
       title: Your website
       pages: Pages
       pages_description: "All pages on your website"

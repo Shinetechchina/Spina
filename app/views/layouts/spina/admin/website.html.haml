@@ -1,25 +1,19 @@
 - content_for :secondary_navigation do
   %nav#secondary
-    %h1= t('spina.website.title')
+    %h1= @account.name
 
     %ul
       %li{class: ('active' if %w[pages].include? controller_name)}
-        = link_to spina.admin_pages_path do
+        = link_to spina.admin_account_pages_path(@account) do
           = icon('pages')
           = t('spina.website.pages')
           %small= t('spina.website.pages_description')
 
       %li{class: ('active' if %w[photos attachments].include? controller_name)}
-        = link_to spina.admin_photos_path do
+        = link_to spina.admin_account_photos_path(@account)  do
           = icon('image')
           = t('spina.website.media_library')
           %small= t('spina.website.media_library_description')
-
-      %li{class: ('active' if %w[components].include? controller_name)}
-        = link_to spina.admin_components_path do
-          = icon('pages')
-          = t('spina.website.components')
-          %small= t('spina.website.components_description')
 
       - Spina.plugins(:website_resource).each do |plugin|
         - if current_theme.config.plugins.include? plugin.name.downcase

@@ -5,7 +5,7 @@ module Spina
       before_action :set_component, only: [:show, :edit, :update, :destroy]
       before_action :check_page_use, only: [:destroy]
 
-      layout "spina/admin/website"
+      layout "spina/admin/account"
 
       def index
         @components = proxy_chain

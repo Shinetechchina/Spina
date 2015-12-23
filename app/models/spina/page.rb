@@ -16,7 +16,11 @@ module Spina
     after_save :save_children
 
     accepts_nested_attributes_for :page_parts, allow_destroy: true
-    validates_presence_of :title
+    validates :title, presence: true,
+                      uniqueness: {
+                        case_sensitive: false,
+                        scope: :account_id
+                        }
 
     scope :sorted, -> { order('position') }
     scope :custom_pages, -> { where(deletable: false) }

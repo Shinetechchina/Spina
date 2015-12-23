@@ -1,6 +1,7 @@
 module Spina
   module Admin
     class AttachmentsController < AdminController
+      before_filter :set_account
       before_filter :set_breadcrumbs
 
       authorize_resource class: Attachment
@@ -8,19 +9,19 @@ module Spina
       layout "spina/admin/media_library"
 
       def index
-        add_breadcrumb I18n.t('spina.website.documents'), spina.admin_attachments_path
-        @attachments = current_account.attachments.file_attached.sorted
+        add_breadcrumb I18n.t('spina.website.documents'), spina.admin_account_attachments_path(@account)
+        @attachments = @account.attachments.file_attached.sorted
         @attachment = Attachment.new
       end
 
       def create
-        @attachment = current_account.attachments.create(attachment_params)
+        @attachment = @account.attachments.create(attachment_params)
       end
 
       def destroy
         @attachment = Attachment.find(params[:id])
         @attachment.destroy
-        redirect_to spina.admin_attachments_url
+        redirect_to spina.admin_account_attachments_path(@account)
       end
 
       def select
@@ -43,8 +44,12 @@ module Spina
 
       private
 
+      def set_account
+        @account = current_user.accounts.friendly.find(params[:account_id])
+      end
+
       def set_breadcrumbs
-        add_breadcrumb I18n.t('spina.website.media_library'), spina.admin_media_library_path
+        add_breadcrumb I18n.t('spina.website.media_library'), spina.admin_account_media_library_path(@account)
       end
 
       def attachment_params

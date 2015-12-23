@@ -1,0 +1,15 @@
+.filters
+  = link_to spina.new_admin_account_path, class: 'button button-primary' do
+    = icon('plus')
+    = t('spina.accounts.new', default: 'New Account')
+
+%table.table.datatable
+  %thead
+    %tr
+      %th= Spina::Account.human_attribute_name(:name)
+      %th= Spina::Account.human_attribute_name(:logo)
+      %th= Spina::Account.human_attribute_name(:created_at)
+      %th{colspan: 2}
+
+  %tbody.table-prepend-document
+    = render partial: 'spina/admin/accounts/account', collection: @accounts, as: :account
