@@ -32,7 +32,7 @@
           = f.text_field :use_for, placeholder: Spina::Component.human_attribute_name(:use_for)
       %tr
         %td
-          %h3 components
+          %h3 component params 
           #component_params
             = f.fields_for :component_params do |component_param|
               = render 'component_param_fields', f: component_param

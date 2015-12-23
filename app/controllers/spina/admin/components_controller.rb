@@ -70,8 +70,7 @@ module Spina
       end
 
       def check_page_use
-        component = Component.find_by(id: params[:id])
-        if component.present? && component.component_params.any? {|c| c.page_component_params.any?}
+        if @component.present? && @component.component_params.any? {|c| c.page_component_params.any?}
           redirect_to :back, alert: I18n.t('spina.notifications.modify_component_failed')
         end
       end

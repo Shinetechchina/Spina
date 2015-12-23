@@ -14,10 +14,7 @@ Spina::Engine.routes.draw do
     end
 
     resources :users
-    resources :components do
-      resources :component_params, only: [:new]
-    end
-    resources :component_params, only: [:destroy, :update, :create]
+    resources :components
     # Sessions
     resources :sessions
     get "login" => "sessions#new"
@@ -28,10 +25,8 @@ Spina::Engine.routes.draw do
 
     resources :pages do
       post :sort, on: :collection
-      resources :page_components, only: [:new, :index]
+      resources :page_components
     end
-
-    resources :page_components, only: [:destroy, :update, :create]
 
     resources :page_parts do
       collection do

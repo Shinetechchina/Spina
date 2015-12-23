@@ -1,3 +1,4 @@
+## if need to do it ?  if not can remove
 module Spina
   module Admin
     class ComponentParamsController < AdminController
