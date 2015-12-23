@@ -11,5 +11,4 @@ test/dummy/app/assets/fonts/
 # Ignore application configuration
 test/dummy/config/application.yml
 /.rbenv-gemsets
-coverage/*.json
 .env.test
