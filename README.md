@@ -158,6 +158,15 @@ The views for these templates are stored in `app/views/default/pages`.
 
 You can define custom pages for your theme that will be generated when bootstrapping your website. You can define whether or not they're deletable. By default Spina creates a custom page named Homepage which is not deletable.
 
+# How to run test
+1. `touch ./config/.env.test`  
+2. Adding content in `./config/.env.test`, `YOUR_CODECLIMATE_REPO_TOKEN` can be found in your email(Have sent a key to your email, please check)
+```ruby
+CODECLIMATE_REPO_TOKEN=YOUR_CODECLIMATE_REPO_TOKEN
+```
+3. Run `bundle exec rake test` from console to run test.
+
+
 # License
 
 Spina is released under the [MIT license](LICENSE.md).

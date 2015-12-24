@@ -12,4 +12,5 @@ test/dummy/app/assets/fonts/
 test/dummy/config/application.yml
 .rbenv-gemsets
 .versions.conf
-
+.env.test
+.env
