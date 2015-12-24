@@ -14,7 +14,8 @@
         %td
           = Spina::Component.human_attribute_name :name
         %td
-          = f.select :component_id, current_user.components.map{ |x| [x.name, x.id] }
+          .select-dropdown
+            = f.select :component_id, current_user.components.map{ |x| [x.name, x.id] }
 
 
   %button.button.button-primary{type: 'submit'}

@@ -29,3 +29,6 @@
               = link_to spina.edit_admin_account_page_page_component_path(@account, @page, page_component), class: 'button button-small' do
                 = icon('pencil-outline')
                 = t('spina.set_value', default: 'config value')
+            -else
+              .button.button-small
+                =t('spina.no_value', default: 'not need value')

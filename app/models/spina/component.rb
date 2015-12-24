@@ -10,7 +10,7 @@ module Spina
     validates :name, presence: true, uniqueness: true
     after_commit :check_page_component_param, on: :update
 
-    after_commit :update_component_template
+    before_save :update_component_template
     after_destroy :destroy_component_template
 
     private
