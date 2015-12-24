@@ -1,0 +1,27 @@
+.filters
+  = link_to spina.new_admin_component_path, class: 'button button-primary' do
+    = icon('plus')
+    = t('spina.components.new', default: 'component new')
+
+.table-container
+  %table.table
+    %thead
+      %tr
+        %th{width: 300}= Spina::Component.human_attribute_name :name
+        %th{width: 300}= Spina::Component.human_attribute_name :use_for
+        %th
+
+    %tbody
+      - @components.each do |component|
+        %tr
+          %td= component.name
+          %td= component.use_for
+          %td
+            = link_to spina.edit_admin_component_path(component), class: 'button button-small' do
+              = icon('pencil-outline')
+              = t('spina.edit')
+
+            = link_to spina.admin_component_path(component), class: 'button button-small' do
+              = t('spina.show')
+
+            = link_to t('spina.delete'), spina.admin_component_path(component), method: :delete, class: 'button button-danger button-link button-small', data: {confirm: t('spina.component.delete_confirmation', subject: component.name, default: 'Are you sure?')}

@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir['{app,config,db,lib,test}/**/*'] + ['Rakefile', 'README.md']
   # s.test_files = Dir['test/**/*']
-
+  s.add_dependency 'cocoon'
   s.add_dependency 'rails'
   s.add_dependency 'bcrypt-ruby'
   s.add_dependency 'haml-rails'

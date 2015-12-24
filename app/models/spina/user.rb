@@ -2,6 +2,7 @@ module Spina
   class User < ActiveRecord::Base
     has_secure_password
 
+    has_many :components
     has_and_belongs_to_many :accounts, dependent: :destroy
 
     validates_presence_of :name, :email

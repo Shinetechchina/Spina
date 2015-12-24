@@ -14,6 +14,7 @@ Spina::Engine.routes.draw do
       
       resources :pages do
         post :sort, on: :collection
+        resources :page_components
       end
       get 'media_library' => 'photos#index', as: "media_library"
 
@@ -62,6 +63,8 @@ Spina::Engine.routes.draw do
     end
 
     resources :users
+    resources :components
+
 
     # Sessions
     resources :sessions, only: [:new, :create]

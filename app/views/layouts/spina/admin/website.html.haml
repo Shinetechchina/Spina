@@ -3,14 +3,14 @@
     %h1= @account.name
 
     %ul
-      %li{class: ('active' if params[:controller] == "spina/admin/pages")}
+      %li{class: ('active' if %w[pages page_components].include? controller_name)}
         = link_to spina.admin_account_pages_path(@account) do
           = icon('pages')
           = t('spina.website.pages')
           %small= t('spina.website.pages_description')
 
-      %li{class: ('active' if params[:controller] == "spina/admin/photos" || params[:controller] == "spina/admin/attachments")}
-        = link_to spina.admin_account_photos_path(@account) do
+      %li{class: ('active' if %w[photos attachments].include? controller_name)}
+        = link_to spina.admin_account_photos_path(@account)  do
           = icon('image')
           = t('spina.website.media_library')
           %small= t('spina.website.media_library_description')

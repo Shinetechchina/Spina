@@ -6,7 +6,7 @@
   %section
     .gallery-select.gallery
       .item
-        = form_for [spina, :admin, @photo], html: {multipart: true} do |f|
+        = form_for [spina, :admin, @account, @photo], html: {multipart: true} do |f|
           = f.file_field :file, data: {customfileinput: true}
 
       = form_tag spina.wysihtml5_insert_admin_account_photos_path(@account, params[:object_id]), remote: true, class: 'gallery-prepend-image' do

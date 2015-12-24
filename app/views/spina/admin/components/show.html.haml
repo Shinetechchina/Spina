@@ -1,0 +1,31 @@
+.pull-right
+  = link_to spina.edit_admin_component_path(@component), class: 'button button-small' do
+    = icon('pencil-outline')
+    = t('spina.edit')
+
+  = link_to spina.admin_components_path, class: 'button button-small' do
+    = t('spina.back')
+
+.table-container.table-form
+  %table.table
+    %tr
+      %th= Spina::Component.human_attribute_name(:name)
+      %td= @component.name
+    %tr
+      %th= Spina::Component.human_attribute_name(:use_for)
+      %td= @component.use_for
+
+%h2=t('spina.component_params', default: 'component params')
+
+.table-container
+  %table.table
+    %thead
+      %tr
+        %th= Spina::ComponentParam.human_attribute_name :name
+        %th= Spina::ComponentParam.human_attribute_name :use_for
+
+    %tbody
+      - @component.component_params.each do |component|
+        %tr
+          %td= component.name
+          %td= component.use_for

@@ -9,6 +9,12 @@
         = link_to spina.admin_users_path do
           = icon('users-outline')
           = t('spina.preferences.users')
+    
+    %li{class: ('active' if %w[components].include? controller_name)}
+      = link_to spina.admin_components_path do
+        = icon('pages')
+        = t('spina.website.components')
+        %small= t('spina.website.components_description')
           
     %li.bottom
       = link_to spina.admin_logout_path, data: {no_turbolink: true} do

@@ -23,6 +23,8 @@ en:
       alert: Oops! Something went wrong
       login: You have to login first
       wrong_username_or_password: Wrong email or password
+      modify_component_failed: Faild, because this component has beed used by page
+      destroyed: This component has beed destroyed
 
     website:
       index: Websites
@@ -33,6 +35,8 @@ en:
       media_library_description: "Here's where you'll find all of your images and documents"
       documents: Documents
       photos: Images
+      components: Components
+      components_description: "All components on your website"
 
     accounts:
       new: New website
@@ -69,6 +73,8 @@ en:
       skip_to_first_child: forward to first child page
       invisible_to_search_engines: Your website is invisible to search engines
       invisible_to_search_engines_description: Go to your preferences to activate search engines.
+      show_component: Show components
+      hide_component: Hide components
 
     users:
       new: New user

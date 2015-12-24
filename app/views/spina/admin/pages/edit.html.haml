@@ -4,5 +4,31 @@
       - @tabs.each_with_index do |tab, i|
         %li{class: (i==0 ? 'active' : '')}
           = link_to t("spina.pages.#{tab}"), "##{tab}"
-
 = render 'form'
+
+.filters
+  = link_to spina.new_admin_account_page_page_component_path(@account, @page), class: 'button button-primary' do
+    = icon('plus')
+    = t('spina.page_components.add', default: 'add component')
+
+.table-container
+  %table.table
+    %thead
+      %tr
+        %th= Spina::Component.human_attribute_name :name
+        %th= Spina::Component.human_attribute_name :use_for
+        %th
+
+    %tbody
+      - @page.page_components.each do |page_component|
+        %tr
+          %td= page_component.name
+          %td= page_component.use_for
+          %td
+            - if page_component.page_component_params.present?
+              = link_to spina.edit_admin_account_page_page_component_path(@account, @page, page_component), class: 'button button-small' do
+                = icon('pencil-outline')
+                = t('spina.set_value', default: 'config value')
+            -else
+              .button.button-small
+                =t('spina.no_value', default: 'not need value')
