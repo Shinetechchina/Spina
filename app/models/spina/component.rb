@@ -32,8 +32,8 @@ module Spina
 
     def check_page_component_param
       page_components.each do |page_component|
-        unless component_params.size == page_component.size
-          # need to do maybe a version control
+        unless component_params.size == page_component.page_component_params.size
+          page_component.reinitial_page_component_params
         end
       end
     end
