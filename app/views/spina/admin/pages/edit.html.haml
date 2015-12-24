@@ -25,6 +25,7 @@
           %td= page_component.name
           %td= page_component.use_for
           %td
-            = link_to spina.edit_admin_account_page_page_component_path(@account, @page, page_component), class: 'button button-small' do
-              = icon('pencil-outline')
-              = t('spina.set_value', default: 'config value')
+            - if page_component.page_component_params.present?
+              = link_to spina.edit_admin_account_page_page_component_path(@account, @page, page_component), class: 'button button-small' do
+                = icon('pencil-outline')
+                = t('spina.set_value', default: 'config value')

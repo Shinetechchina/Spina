@@ -8,9 +8,9 @@
           = message
 
 = form_for [spina, :admin, @account, @page, @page_component] do |f|
-  = f.fields_for :page_component_params do |ff|
-    .table-container
-      %table.table.table-form
+  .table-container
+    %table.table.table-form
+      = f.fields_for :page_component_params do |ff|
         %tr
           %td
             = Spina::ComponentParam.human_attribute_name :param_value 
@@ -19,6 +19,11 @@
             = ff.object.use_for
           %td
             = ff.text_field :param_value
+      - if @page_component.page_component_params.blank?
+        %tr
+          %td
+            =t('spina.not_need_value', default: 'not need value')
+
        
 
 

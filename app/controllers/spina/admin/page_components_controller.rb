@@ -59,7 +59,6 @@ module Spina
         params.require(:page_component).permit(:component_id)
       end
       def update_params
-        binding.pry
         params.require(:page_component).permit(:component_id, page_component_params_attributes: [:id, :component_param_id, :param_value])
       end
     end
