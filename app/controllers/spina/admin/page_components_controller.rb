@@ -1,46 +1,66 @@
 module Spina
   module Admin
     class PageComponentsController < AdminController
-      def index
-        @page_components = Page.find(params[:page_id]).page_components
-        @page_components.each do |page_component|
-          page_component.component.component_params.each do |component_param|
-            page_component.page_component_params.find_or_create_by!(component_param_id: component_param.id)
-          end
-        end
-        @components = Component.all
-      end
+      before_action :set_account
+      before_action :set_page
+      before_action :set_page_component, only: [:edit, :update]
+      before_action :set_breadcrumb
+
+      layout "spina/admin/website"
 
       def new
-        page = Page.find(params[:page_id])
-        @component = Component.find(params[:component_id])
-        @page_component = PageComponent.new(component_id: params[:component_id], page_id: page.id)
-        @component.component_params.each do |component_param|
-          @page_component.page_component_params.new(component_param_id: component_param.id)
-        end
+        add_breadcrumb I18n.t('spina.pages_components.new', default: 'add component')
+
+        @page_component = @page.page_components.new
       end
 
       def create
-        PageComponent.create(create_params)
-        redirect_to :back
+        @page_component = @page.page_components.new(create_params)
+
+        if @page_component.save
+          redirect_to spina.edit_admin_account_page_page_component_path(@account, @page, @page_component)
+        else
+          render :new
+        end
+      end
+
+      def edit
+        add_breadcrumb @page_component.name, spina.edit_admin_account_page_path(@account, @page)
+        add_breadcrumb I18n.t('spina.pages_components.set_value', default: 'set_value')
       end
 
       def update
-        PageComponent.update(params[:id], update_params)
-        redirect_to :back
-      end
-
-      def destroy
-        PageComponent.find_by(id: params[:id]).try(:destroy)
-        redirect_to :back
+        if @page_component.update_attributes(update_params)
+          redirect_to spina.edit_admin_account_page_path(@account, @page)
+        else
+          render :edit
+        end
       end
 
       private
+      def set_account
+        @account = current_user.accounts.friendly.find(params[:account_id])
+      end
+
+      def set_page
+        @page = @account.pages.friendly.find(params[:page_id])
+      end
+
+      def set_page_component
+        @page_component = @page.page_components.find(params[:id])
+      end
+
+      def set_breadcrumb
+        add_breadcrumb I18n.t('spina.website.pages'), spina.admin_account_pages_path(@account)
+        add_breadcrumb @page.name, spina.edit_admin_account_page_path(@account, @page)
+      end
+
       def create_params
-        params.require(:page_component).permit(:component_id, :page_id, page_component_params_attributes: [:component_param_id, :param_value])
+        params.require(:page_component).permit(:component_id)
       end
       def update_params
-        params.require(:page_component).permit(:component_id, :page_id, page_component_params_attributes: [:id, :component_param_id, :param_value])
+        binding.pry
+        params.require(:page_component).permit(:component_id, page_component_params_attributes: [:id, :component_param_id, :param_value])
       end
     end
   end

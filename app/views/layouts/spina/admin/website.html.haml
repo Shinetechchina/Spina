@@ -3,7 +3,7 @@
     %h1= @account.name
 
     %ul
-      %li{class: ('active' if %w[pages].include? controller_name)}
+      %li{class: ('active' if %w[pages page_components].include? controller_name)}
         = link_to spina.admin_account_pages_path(@account) do
           = icon('pages')
           = t('spina.website.pages')

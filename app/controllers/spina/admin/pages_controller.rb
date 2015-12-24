@@ -6,7 +6,7 @@ module Spina
       before_filter :set_breadcrumb
       before_filter :set_tabs, only: [:new, :create, :edit, :update]
       before_action :set_theme
-
+      before_action :set_page, only: [:edit, :update, :destroy]
       authorize_resource class: Page
 
       layout "spina/admin/website"
@@ -36,13 +36,11 @@ module Spina
       end
 
       def edit
-        @page = @account.pages.find(params[:id])
         add_breadcrumb @page.title
         @page_parts = @theme.config.page_parts.map { |page_part| @page.page_part(page_part) }
       end
 
       def update
-        @page = @account.pages.find(params[:id])
         add_breadcrumb @page.title
         respond_to do |format|
           if @page.update_attributes(page_params)
@@ -71,8 +69,6 @@ module Spina
       end
 
       def destroy
-        @page = @account.pages.find(params[:id])
-
         @page.destroy
         redirect_to spina.admin_account_pages_path(@account)
       end
@@ -85,6 +81,10 @@ module Spina
 
       def set_account
         @account = current_user.accounts.friendly.find(params[:account_id])
+      end
+
+      def set_page
+        @page = @account.pages.find(params[:id])
       end
 
       def set_breadcrumb

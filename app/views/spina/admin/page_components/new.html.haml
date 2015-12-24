@@ -1,0 +1,24 @@
+- if @page_component.errors.present?
+  %aside#notifications
+  #error_explanation.notification.notification-error{"data-icon" => "m"}
+    %p There are some missing fields...
+    %ul
+      - @page_component.errors.full_messages.each do |message|
+        %li 
+          = message
+
+= form_for [spina, :admin, @account, @page, @page_component] do |f|
+  .table-container
+    %table.table.table-form
+      %tr
+        %td
+          = Spina::Component.human_attribute_name :name
+        %td
+          = f.select :component_id, current_user.components.map{ |x| [x.name, x.id] }
+
+
+  %button.button.button-primary{type: 'submit'}
+    = icon('check')
+    =t('spina.page_components.save', default: 'save component')
+
+  = link_to t('spina.cancel'), spina.edit_admin_account_page_path(@account, @page), class: 'button button-link'

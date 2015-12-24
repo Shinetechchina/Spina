@@ -6,7 +6,7 @@
   %section
     .gallery-select.gallery
       .item.item-small
-        = form_for [spina, :admin, @photo], html: {multipart: true} do |f|
+        = form_for [spina, :admin, @account, @photo], html: {multipart: true} do |f|
           = f.file_field :file, data: {customfileinput: true}
 
       = form_tag spina.insert_photo_admin_account_photos_path(@account, params[:page_part_id]), remote: true, class: 'gallery-prepend-image' do
