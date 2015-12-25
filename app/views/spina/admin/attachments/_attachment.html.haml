@@ -5,4 +5,4 @@
     %small= l attachment.created_at, format: '%d %B %Y %H:%M'
   %td= attachment.file.try(:url)
   %td.nowrap
-    = link_to t('spina.delete'), admin_account_attachment_path(@account, attachment), method: :delete, class: 'button button-link button-danger button-small', data: {confirm: t('spina.delete_confirmation', subject: attachment.name)}
+    = link_to t('spina.delete'), spina.admin_account_attachment_path(@account, attachment), method: :delete, class: 'button button-link button-danger button-small', data: {confirm: t('spina.delete_confirmation', subject: attachment.name)}

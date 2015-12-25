@@ -32,3 +32,5 @@
             -else
               .button.button-small
                 =t('spina.no_value', default: 'not need value')
+
+            = link_to t('spina.delete'), spina.admin_account_page_page_component_path(@account, @page, page_component), method: :delete, class: 'button button-link button-danger button-small', data: {confirm: t('spina.delete_confirmation', subject: page_component.name)}

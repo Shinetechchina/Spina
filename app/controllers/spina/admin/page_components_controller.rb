@@ -3,7 +3,7 @@ module Spina
     class PageComponentsController < AdminController
       before_action :set_account
       before_action :set_page
-      before_action :set_page_component, only: [:edit, :update]
+      before_action :set_page_component, only: [:edit, :update, :destroy]
       before_action :set_breadcrumb
 
       layout "spina/admin/website"
@@ -37,6 +37,12 @@ module Spina
         end
       end
 
+      def destroy
+        @page_component.destroy
+
+        redirect_to spina.edit_admin_account_page_path(@account, @page)
+      end
+
       private
       def set_account
         @account = current_user.accounts.friendly.find(params[:account_id])
@@ -56,6 +62,8 @@ module Spina
       end
 
       def create_params
+        params[:page_component] ||= {_: 0}
+        
         params.require(:page_component).permit(:component_id)
       end
       def update_params
