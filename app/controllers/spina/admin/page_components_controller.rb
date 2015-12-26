@@ -58,7 +58,7 @@ module Spina
 
       def set_breadcrumb
         add_breadcrumb I18n.t('spina.website.pages'), spina.admin_account_pages_path(@account)
-        add_breadcrumb @page.name, spina.edit_admin_account_page_path(@account, @page)
+        add_breadcrumb @page.title, spina.edit_admin_account_page_path(@account, @page)
       end
 
       def create_params
